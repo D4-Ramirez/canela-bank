@@ -1,0 +1,142 @@
+server:
+  port: 9000
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://150.136.165.17:8080"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: development
+  cloud:
+    gateway:
+      routes:
+        - id: creditCardManagementService
+          uri: http://localhost:9001/
+          predicates:
+            - Path=/api/credit-cards/**
+        - id: loanManagementService
+          uri: http://localhost:9002/
+          predicates:
+            - Path=/api/loans/**
+        - id: inversionManagementService
+          uri: http://localhost:9003/
+          predicates:
+            - Path=/api/inversions/**
+        - id: accountManagementService
+          uri: http://localhost:9005/
+          predicates:
+            - Path=/api/accounts/**
+        - id: dashboardService
+          uri: http://localhost:9006/
+          predicates:
+            - Path=/api/dashboard/**
+        - id: servicePaymentService
+          uri: http://localhost:9007/
+          predicates:
+            - Path=/api/service-payments/**
+        - id: userManagementService
+          uri: http://localhost:9008/
+          predicates:
+            - Path=/api/users/**
+        - id: communicationChannelsService
+          uri: http://localhost:9009/
+          predicates:
+            - Path=/api/communication-channels/**
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  cloud:
+    gateway:
+      routes:
+        - id: creditCardManagementService
+          uri: http://10.0.0.169:9001/
+          predicates:
+            - Path=/api/credit-cards/**
+        - id: loanManagementService
+          uri: http://10.0.0.169:9002/
+          predicates:
+            - Path=/api/loans/**
+        - id: inversionManagementService
+          uri: http://10.0.0.169:9003/
+          predicates:
+            - Path=/api/inversions/**
+        - id: accountManagementService
+          uri: http://10.0.0.169:9005/
+          predicates:
+            - Path=/api/accounts/**
+        - id: dashboardService
+          uri: http://10.0.0.169:9006/
+          predicates:
+            - Path=/api/dashboard/**
+        - id: servicePaymentService
+          uri: http://10.0.0.169:9007/
+          predicates:
+            - Path=/api/service-payments/**
+        - id: userManagementService
+          uri: http://10.0.0.169:9008/
+          predicates:
+            - Path=/api/users/**
+        - id: communicationChannelsService
+          uri: http://10.0.0.169:9009/
+          predicates:
+            - Path=/api/communication-channels/**
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: production
+  cloud:
+    gateway:
+      routes:
+        - id: creditCardManagementService
+          uri: http://10.0.0.35:9001/
+          predicates:
+            - Path=/api/credit-cards/**
+        - id: loanManagementService
+          uri: http://10.0.0.35:9002/
+          predicates:
+            - Path=/api/loans/**
+        - id: inversionManagementService
+          uri: http://10.0.0.35:9003/
+          predicates:
+            - Path=/api/inversions/**
+        - id: accountManagementService
+          uri: http://10.0.0.35:9005/
+          predicates:
+            - Path=/api/accounts/**
+        - id: dashboardService
+          uri: http://10.0.0.35:9006/
+          predicates:
+            - Path=/api/dashboard/**
+        - id: servicePaymentService
+          uri: http://10.0.0.35:9007/
+          predicates:
+            - Path=/api/service-payments/**
+        - id: userManagementService
+          uri: http://10.0.0.35:9008/
+          predicates:
+            - Path=/api/users/**
+        - id: communicationChannelsService
+          uri: http://10.0.0.35:9009/
+          predicates:
+            - Path=/api/communication-channels/**
