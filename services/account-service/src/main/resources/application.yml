@@ -1,65 +1,6 @@
 spring:
-  profiles:
-    active: development
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: canelabank@gmail.com
-    password: qmippwdhmjtcyukd
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-
-application:
-  name: Service Account Management
-  description: API created to manage accounts
-
+  application:
+    name: Service Account Management
+    description: API created to manage accounts
 server:
-  port: 9005
-
-integrators:
-  data:
-    port: 3002
-  providers:
-    port: 3000
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: development
-integrators:
-  data:
-    ip: localhost
-  providers:
-    ip: localhost
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: test
-integrators:
-  data:
-    ip: 10.1.0.19
-  providers:
-    ip: 10.2.0.193
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: production
-integrators:
-  data:
-    ip: 10.1.0.115
-  providers:
-    ip: 10.2.0.225
-
-
+  port: ${SERVER_PORT:8080}

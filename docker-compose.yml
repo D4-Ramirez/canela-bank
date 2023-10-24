@@ -1,0 +1,39 @@
+networks:
+  main:
+    driver: bridge
+  kong:
+    driver: bridge
+
+volumes:
+  kong_db_data:
+
+services:
+  gateway_database:
+    image: postgres:15.2-alpine3.18
+    environment:
+      - POSTGRES_USER=kong
+      - POSTGRES_DB=kong
+      - POSTGRES_PASSWORD=kong
+    volumes:
+      - kong_db_data:/var/lib/postgresql/data
+    networks:
+      - kong
+  api_gateway:
+    image: kong/kong-gateway:3.2-alpine
+    environment:
+      - KONG_DATABASE=kong
+      - KONG_PG_HOST=gateway_database
+      - KONG_LOG_LEVEL=info
+      - KONG_PG_USER=kong
+      - KONG_PG_PASSWORD=kong
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8444:8444"
+    depends_on:
+      - gateway_database
+    networks:
+      - kong
+      - main

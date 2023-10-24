@@ -1,4 +1,4 @@
-package com.canela.service.accountmgmt.exceptions;
+package com.canela.service.accounts.exception;
 
 public class TransactionException extends Exception {
     public TransactionException(String message) {
