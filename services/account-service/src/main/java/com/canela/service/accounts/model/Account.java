@@ -1,16 +1,12 @@
 package com.canela.service.accounts.model;
 
-import com.canela.service.accounts.util.AccountNumberGenerator;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
 
 @Setter
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "accounts")
@@ -20,16 +16,14 @@ public class Account {
     @Column(name = "id")
     private String id;
 
-    @GeneratedValue(generator = "ACCOUNT_NUMBER")
-    @GenericGenerator(name="ACCOUNT_NUMBER", type = AccountNumberGenerator.class)
     @Column(name = "number")
-    private String number;
+    private Long number;
 
     @Column(
             name = "balance",
             nullable = false
     )
-    private Double balance = 0.0;
+    private Double balance;
 
     @Column(
             name = "holder_id",
