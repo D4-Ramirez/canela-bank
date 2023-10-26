@@ -2,5 +2,17 @@ spring:
   application:
     name: Service Account Management
     description: API created to manage accounts
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/accountsdb}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:password}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:update}
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+        format_sql: true
 server:
   port: ${SERVER_PORT:8080}

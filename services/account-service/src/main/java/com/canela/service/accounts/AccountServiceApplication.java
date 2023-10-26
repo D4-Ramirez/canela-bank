@@ -16,8 +16,8 @@ public class AccountServiceApplication {
 	}
 
 	@Bean
-	public OpenAPI customOpenAPI(@Value("${application.name}") String appName,
-								 @Value("${application.description}") String description) {
+	public OpenAPI customOpenAPI(@Value("${spring.application.name}") String appName,
+								 @Value("${spring.application.description}") String description) {
 		return new OpenAPI().components(new Components()).info(new Info().title(appName).description(description));
 	}
 }

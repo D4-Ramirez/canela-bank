@@ -1,0 +1,6 @@
+package com.canela.service.accounts.exception;
+public class AlreadyExistException extends RuntimeException{
+    public AlreadyExistException(String message) {
+        super(message);
+    }
+}
