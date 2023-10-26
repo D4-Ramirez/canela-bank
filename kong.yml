@@ -1,0 +1,9 @@
+_format_version: "2.1"
+
+services:
+  - name: accounts-service
+    url: http://accounts-service:8081
+    routes:
+      - name: accounts-route
+        paths:
+          - /accounts
